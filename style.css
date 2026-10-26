@@ -1,0 +1,134 @@
+:root {
+  color-scheme: dark;
+  --background: #080808;
+  --text: #f5f5f5;
+  --line: #d8d8d8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 28px 16px;
+  background: radial-gradient(ellipse at center, #191919 0%, var(--background) 72%);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.game {
+  width: min(100%, 620px);
+  padding: 42px 32px 38px;
+  text-align: center;
+  background: linear-gradient(145deg, rgba(24,24,24,.82), rgba(10,10,10,.9));
+  border: 1px solid #777;
+  border-radius: 24px;
+  box-shadow: 0 18px 55px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.05);
+}
+
+h1 {
+  margin: 0 0 28px;
+  font-size: clamp(2rem, 5vw, 2.7rem);
+  letter-spacing: .3px;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  width: min(100%, 435px);
+  margin: 0 auto;
+}
+
+.cell {
+  aspect-ratio: 1;
+  border: 2px solid var(--line);
+  border-radius: 10px;
+  background: linear-gradient(145deg, #171717, #0b0b0b);
+  color: var(--text);
+  font: inherit;
+  font-size: clamp(2.5rem, 9vw, 4rem);
+  font-weight: 400;
+  cursor: pointer;
+  transition: background .16s ease, border-color .16s ease, transform .16s ease;
+}
+
+.cell:hover:enabled {
+  background: #242424;
+  border-color: #fff;
+  transform: translateY(-1px);
+}
+
+.cell:focus-visible,
+.reset:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 4px;
+}
+
+.cell:disabled {
+  cursor: default;
+  opacity: 1;
+}
+
+.cell.winning {
+  background: #292929;
+  border-color: #fff;
+  box-shadow: inset 0 0 18px #555;
+}
+
+.status {
+  min-height: 34px;
+  margin: 28px 0 32px;
+  font-size: clamp(1.25rem, 4vw, 1.7rem);
+  font-weight: 700;
+}
+
+.reset {
+  padding: 13px 30px;
+  border: 2px solid var(--line);
+  border-radius: 8px;
+  background: #111;
+  color: var(--text);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background .16s ease, color .16s ease;
+}
+
+.reset:hover {
+  background: #f5f5f5;
+  color: #080808;
+}
+
+.hint {
+  margin: 22px 0 0;
+  color: #bdbdbd;
+  font-size: .9rem;
+}
+
+@media (max-width: 480px) {
+  .game {
+    padding: 30px 18px;
+    border-radius: 18px;
+  }
+
+  .board {
+    gap: 6px;
+  }
+
+  .cell {
+    border-radius: 7px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+  }
+}
